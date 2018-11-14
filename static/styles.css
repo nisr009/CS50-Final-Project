@@ -1,0 +1,105 @@
+article {
+  margin-bottom: 3em; }
+  article .blog-img {
+    width: 100%;
+    display: block;
+    height: 300px;
+    display: table;
+    position: relative;
+    z-index: 0; }
+    article .blog-img:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      content: '';
+      background: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      -webkit-transition: 0.9s;
+      -o-transition: 0.9s;
+      transition: 0.9s;
+      z-index: -1; }
+    article .blog-img .icon {
+      display: table-cell;
+      vertical-align: middle;
+      z-index: 1;
+      opacity: 0;
+      -webkit-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s; }
+      article .blog-img .icon i {
+        color: #fff; }
+  article:hover .blog-img:after {
+    opacity: 1; }
+  article:hover .icon {
+    opacity: 1; }
+  article .entry {
+    width: 100%;
+    margin-top: 0;
+    z-index: 1;
+    background: #fff;
+    padding: 2em;
+    position: relative; }
+    article .entry h2 {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 1.7; }
+      article .entry h2 a {
+        color: #000; }
+        article .entry h2 a:hover {
+          color: #F7B633; }
+    article .entry .meta-2 {
+      color: #b3b3b3; }
+      article .entry .meta-2 span {
+        margin-right: 10px; }
+        article .entry .meta-2 span i {
+          color: #666666; }
+
+.thumb-img,
+.insta-img,
+.staff-img,
+.blog-img,
+.colorlib-about-img,
+.services-img,
+.project-img {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative; }
+
+  #wrap {
+    width: 1100px;
+    margin: 0 auto;
+  }
+
+  #external-events {
+    float: left;
+    width: 150px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background: #eee;
+    text-align: left;
+  }
+
+  #external-events h4 {
+    font-size: 16px;
+    margin-top: 0;
+    padding-top: 1em;
+  }
+
+  #external-events .fc-event {
+    margin: 10px 0;
+    cursor: pointer;
+  }
+
+  #external-events p {
+    margin: 1.5em 0;
+    font-size: 11px;
+    color: #666;
+  }
+
+  #external-events p input {
+    margin: 0;
+    vertical-align: middle;
+  }
