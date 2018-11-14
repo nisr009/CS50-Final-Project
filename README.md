@@ -8,7 +8,7 @@ https://cs50.mydigitaldevops.com
 # Admin section 
 https://cs50.mydigitaldevops.com
 
-username : admin
-login : 1234
+ * username : admin
+ * login : 1234
 
 # Pull request are welcome
