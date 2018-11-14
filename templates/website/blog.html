@@ -1,0 +1,54 @@
+{% extends "weblayout.html" %}
+
+{% block title %}
+    Blog
+{% endblock %}
+
+{% block main %}
+<aside id="colorlib-hero">
+			<div class="flexslider">
+				<ul class="slides">
+			   	<li style="background-image: url(static/website/images/cover_img_3.jpg);">
+			   		<div class="overlay"></div>
+			   		<div class="container-fluid">
+			   			<div class="row">
+				   			<div class="col-md-8 col-sm-12 col-md-offset-2 slider-text">
+				   				<div class="slider-text-inner text-center">
+				   					<h1>Blog</h1>
+				   					<h2><a href="index.html"></a></h2>
+				   				</div>
+				   			</div>
+				   		</div>
+			   		</div>
+			   	</li>
+			  	</ul>
+		  	</div>
+		</aside>
+<div id="colorlib-blog">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<article class="animate-box">
+			    {% for article in articles %}
+				<a href="#" class="blog-img text-center" style="background-image: url({{ article.image }});">
+					<span class="icon"><i class="icon-search2"></i></span>
+				</a>
+				<div class="entry">
+					<h2><a href="#">{{ article.title }}</a></h2>
+					<p class="meta-2"><span><i class="icon-calendar2"></i> {{ article.date }}</span><span><i class="icon-user"></i> {{ article.userid }}</span> <span><i class="icon-dropbox"></i> {{ article.category }}</span></p>
+					<p>{{ article.content }}
+				</div>
+				<div><br><br></div>
+				{% endfor %}
+			</article>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+
+
+{%block script %}
+
+{% endblock %}

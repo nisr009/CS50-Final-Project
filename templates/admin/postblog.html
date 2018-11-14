@@ -1,0 +1,108 @@
+{% extends "adminlayout.html" %}
+
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block title %}
+    postblog
+{% endblock %}
+
+{% block content_header %}
+Blogs > History
+{% endblock %}
+
+{% block main %}
+
+<ul class="timeline">
+	{% for article in articles %}
+    <!-- timeline time label -->
+    <li class="time-label">
+        <span class="bg-red">
+            {{ article.dateCreated }}
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+    <!-- timeline item -->
+    <li>
+        <!-- timeline icon -->
+        <i class="fa fa-envelope bg-blue"></i>
+        <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> {{ article.dateCreated }}</span>
+            <h3 class="timeline-header"><a href="#">Support Team</a> ...</h3>
+            <div class="timeline-body">
+               <article class="animate-box">
+				<a href="#" class="blog-img text-center" style="background-image: url({{ article.image }});">
+					<span class="icon"><i class="icon-search2"></i></span>
+				</a>
+				<div class="entry">
+					<h2><a href="#">{{ article.title }}</a></h2>
+					<p class="meta-2"><span><i class="icon-calendar2"></i> {{ article.dateCreated }}</span><span><i class="icon-user"></i> Admin</span> <span><i class="icon-dropbox"></i> {{ article.category }}</span></p>
+					<p>{{ article.content }}</p>
+				</div>
+				<div><br><br></div>
+			</article>
+            </div>
+            <div class="timeline-footer">
+                <form action="{{ url_for('delblog') }}" method="post">
+					<td>
+					<p class="text-light-blue">Check to agree
+					<input value="{{ article.articleid }}" type="checkbox" name="articleid"></td>
+					<input type="submit" value="DELETE"/></p>
+    			</form>
+            </div>
+         {% endfor %}
+        </div>
+    </li>
+    <!-- END timeline item -->
+    ...
+</ul>
+
+
+
+
+{% endblock %}
+
+
+
+{%block script %}
+<!-- Bootstrap 3.3.7 -->
+<script src="static/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+	<script src="static/website/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="static/website/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="static/website/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="static/website/js/jquery.waypoints.min.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="static/website/js/jquery.stellar.min.js"></script>
+	<!-- Flexslider -->
+	<script src="static/website/js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="static/website/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="static/website/js/jquery.magnific-popup.min.js"></script>
+	<script src="static/website/js/magnific-popup-options.js"></script>
+	<!-- Counters -->
+	<script src="static/website/js/jquery.countTo.js"></script>
+	<!-- Main -->
+	<script src="static/website/js/main.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+
+<!-- Bootstrap WYSIHTML5 -->
+<script src="static/js/bootstrap3-wysihtml5.all.min.js"></script>
+{% endblock %}
+
+
+
+
+
+
+
+

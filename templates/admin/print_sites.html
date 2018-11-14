@@ -1,0 +1,184 @@
+{% extends "adminlayout.html" %}
+
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block title %}
+preview
+{% endblock %}
+
+{% block main %}
+<body onload="window.print();">
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <div class="pad margin no-print">
+      <div class="callout callout-info" style="margin-bottom: 0!important;">
+        <h4><i class="fa fa-info"></i> Note:</h4>
+        This page has been enhanced for printing.
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <!-- Main content -->
+    <section class="invoice">
+      <!-- title row -->
+      <div class="row">
+        <div class="col-xs-14">
+          <h2 class="page-header">
+            <i class=""></i> C$50 Build it.
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+
+          <address>
+            <strong>C$50 Build it.</strong><br>
+            795 Folsom Ave, Suite 600<br>
+            San Francisco, CA 94107<br>
+            Phone: (804) 123-5432<br>
+            Email: nico@mydigitaldevops.com
+          </address>
+        </div>
+        <div class="col-sm-4 invoice-col">
+          <b></b><br>
+          <br>
+          <b></b><br>
+          <b></b> <br>
+          <b></b>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <b></b><br>
+          <br>
+          <b></b><br>
+          <b></b> <br>
+          <b>Date:</b> {{ now.day }}.{{ now.month }}.{{ now.year }}
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      <b></b><br>
+          <br>
+          <b>SITES LIST</b><br>
+          <b></b> <br>
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+                <tr>
+                  <th>Site id</th>
+                  <th>Client name</th>
+                  <th>Adress</th>
+                  <th>Post code</th>
+                  <th>City</th>
+                  <th>Country</th>
+                  <th>Country code</th>
+                </tr>
+                </thead>
+                <tbody>
+                 {% for site in sites %}
+                <tr>
+                  <td>{{ site.siteid }}</td>
+                  <td>{{ site.clientid }}</td>
+                  <td>{{ site.adress }}</td>
+                  <td>{{ site.postCode }}</td>
+                  <td>{{ site.city }}</td>
+                  <td>{{ site.country }}</td>
+                  <td>{{ site.countryCode }}</td>
+                {% endfor %}
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Site id</th>
+                  <th>Client name</th>
+                  <th>Adress</th>
+                  <th>Post code</th>
+                  <th>City</th>
+                  <th>Country</th>
+                  <th>Country code</th>
+                </tr>
+                </tfoot>
+              </table>
+          </table>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- this row will not appear when printing -->
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <a href="/printSites" target="_blank" class="btn btn-default pull-right"><i class="fa fa-print"></i> Print</a>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+    <div class="clearfix"></div>
+  </div>
+  <!-- /.content-wrapper -->
+</body>
+
+{% endblock %}
+
+
+
+{%block script %}
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<!-- Select2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.date.extensions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.js"></script>
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<!-- bootstrap color picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+<!-- FastClick -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script>
+
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+

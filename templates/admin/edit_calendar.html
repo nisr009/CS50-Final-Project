@@ -1,0 +1,94 @@
+{% extends "adminlayout.html" %}
+
+
+
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+   Edit Calendar
+{% endblock %}
+
+{% block content_header %}
+Calendar > Edit
+{% endblock %}
+
+{% block main %}
+
+     <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-body no-padding">
+              <!-- THE CALENDAR -->
+              <div id="calendar"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-6">
+          <div class="box box-primary">
+            <div class="box-body no-padding">
+              <!-- THE CALENDAR -->
+              <div id="calendar2"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+
+
+
+
+      <div id='external-events'>
+      <h4>Employees</h4>
+      {% for employee in employees %}
+                <div class='bg-aqua fc-event'>{{ employee.name }} {{ employee.lastname }}</div>
+    {% endfor  %}
+    </div>
+    <div id='external-events'>
+      <h4>Clients</h4>
+      {% for client in clients %}
+                <div class='bg-teal fc-event'>{{ client.name }} : {{ client.lastname }}</div>
+      {% endfor  %}
+    </div>
+    <div id='external-events'>
+      <h4>Vehicules</h4>
+      {% for vehicule in vehicules %}
+                <div class='bg-teal fc-event'>{{ vehicule.make }} : {{ vehicule.licensePlate }}</div>
+      {% endfor  %}
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block script %}
+<!-- jQuery UI 1.11.4 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"></script>
+<!-- fullCalendar -->
+<script src="static/components/moment/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar-scheduler/1.9.4/scheduler.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/en-gb.js'></script>
+<script src='static/js/schedule.js'></script>
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,157 @@
+{% extends "adminlayout.html" %}
+
+
+
+
+
+{% block title %}
+    Users
+{% endblock %}
+
+{% block content_header %}
+Users
+{% endblock %}
+
+{% block main %}
+<!-- Main content -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title"></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div id="#table" class="table-editable">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>User id</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                </tr>
+                </thead>
+                <tbody>
+                 {% for user in users %}
+                <tr>
+                    <td>{{ user.userid }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td><textarea rows="2"> {{ user.hash }} </textarea></td>
+                {% endfor %}
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>User id</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+    <form action="{{ url_for('deluser') }}" method="post">
+    <select name="userid">
+        <option disabled selected value="">Users</option>
+        {% for user in users %}
+            <option value="{{ user.userid }}"/>{{ user.username}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Remove"/>
+    </form>
+    <form action="/register" method="post">
+      <button type="button" fa-user-plus data-toggle="modal" data-target="#modal-default">Add</button>
+      <div class="modal fade" id="modal-default">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Add a user</h4>
+                </div>
+              <div class="modal-body">
+               <div class="register-box">
+                 <div class="register-logo">
+                   <a href="../../index2.html"><b>Admin</b>LTE</a>
+                 </div>
+                 <div class="register-box-body">
+                   <p class="login-box-msg">Add a new user</p>
+                   <form action="/register" method="post">
+                     <div class="form-group has-feedback">
+                       <input type="text" class="form-control" name ="username" placeholder="Username">
+                       <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                     </div>
+                     <div class="form-group has-feedback">
+                       <input type="email" class="form-control" name="email" placeholder="Email">
+                       <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                     </div>
+                     <div class="form-group has-feedback">
+                       <input type="password" class="form-control" name="password" placeholder="Password">
+                       <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                     </div>
+                     <div class="form-group has-feedback">
+                       <input type="password" class="form-control" name="confirmation" placeholder="Retype password">
+                       <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                     </div>
+                   </form>
+                 </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" value="Add" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+    </form>
+
+
+{% endblock %}
+
+
+
+{%block script %}
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<!-- Select2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.date.extensions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.js"></script>
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<!-- bootstrap color picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+<!-- FastClick -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script>
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+{% endblock %}

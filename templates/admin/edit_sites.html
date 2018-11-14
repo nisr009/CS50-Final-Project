@@ -1,0 +1,316 @@
+
+{% extends "adminlayout.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+
+{% block title %}
+    edit sites
+{% endblock %}
+
+{% block content_header %}
+Sites > Edit
+{% endblock %}
+
+{% block main %}
+<!-- Main content -->
+    <section class="content">
+
+
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Controls</h3>
+            </div>
+            <!-- /.box-header -->
+
+            <div class="box-body">
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Select site to remove</strong>
+
+              <form action="{{ url_for('delsite') }}" method="post">
+                <select name="siteid">
+                  <option disabled selected value="">Select</option>
+                  {% for site in sites %}
+                    <option value="{{ site.siteid }}"/>{{ site.adress}} </option>
+                  {% endfor %}
+                </select>
+                <input type="submit" value="remove"/>
+              </form>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Open sites form</strong>
+              <p>
+              <a href="#modal-default" data-toggle="modal" class="btn btn-default"><i class="fa fa-print"></i> Add</a>
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Export</strong>
+              <p>
+              <a href="/printSites" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+              <a href="/pviewSites" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Preview</a>
+              </p>
+
+              <hr>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+
+        <div class="col-md-9">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Sites database</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div id="#table" class="table-editable">
+              <table id="example" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Site id</th>
+                  <th>Client name</th>
+                  <th>Adress</th>
+                  <th>Post code</th>
+                  <th>City</th>
+                  <th>Country</th>
+                  <th>Country code</th>
+                </tr>
+                </thead>
+                <tbody>
+                 {% for site in sites %}
+                <tr>
+                  <td>{{ site.siteid }}</td>
+                  <td>{{ site.clientid }}</td>
+                  <td>{{ site.adress }}</td>
+                  <td>{{ site.postCode }}</td>
+                  <td>{{ site.city }}</td>
+                  <td>{{ site.country }}</td>
+                  <td>{{ site.countryCode }}</td>
+                {% endfor %}
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Site id</th>
+                  <th>Client name</th>
+                  <th>Adress</th>
+                  <th>Post code</th>
+                  <th>City</th>
+                  <th>Country</th>
+                  <th>Country code</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-default">
+  <form action="/addsite" method="post">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Add site</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+                <div class="col-sm-5 col-md-6">
+                  <div class="form-group">
+                    <div><br></br></div>
+                    <select name="clientid">
+                        <option disabled selected value="">Select client</option>
+                         {% for client in clients %}
+                        <option value="{{ client.name }} {{ client.lastname }} "/>{{ client.name }} {{ client.lastname }} </option>
+                         {% endfor %}
+                    </select>
+                  </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" autofocus name="country" placeholder="Country">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" autofocus name="countryCode" placeholder="Country code">
+                    </div>
+
+
+                  </div>
+
+
+
+
+
+                  <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+                    <div class="form-group">
+                    <div><br></br></div>
+                      <input type="text" class="form-control" autofocus name="adress" placeholder="Adress">
+                    </div>
+                      <div class="form-group">
+                        <input type="int" class="form-control" autofocus name="postCode" placeholder="Post code">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" autofocus name="city" placeholder="City">
+                      </div>
+                  </div>
+
+
+
+
+
+                    <div class="modal-footer">
+                  </div>
+                  <div class="pull-left">
+                     <button type="button" class="close" data-dismiss="submit" aria-label="save"><input type="submit" value="Save"/></button>
+                  </div>
+                  <div class="pull-right">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+                  </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </form>
+</div>
+<!-- /.modal -->
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+
+{%block script %}
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<!-- Select2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.date.extensions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.js"></script>
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<!-- bootstrap color picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+<!-- FastClick -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js"></script>
+
+
+
+<script>
+  $(function () {
+    $('#example').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+
+$(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false
+    })
+  })
+</script>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,41 @@
+{% extends "adminlayout.html" %}
+
+{% block title %}
+    login
+{% endblock %}
+
+{% block main2 %}
+
+<div class="login-box">
+  <div class="login-logo">
+    <a href="https://www.edx.org/course/cs50s-introduction-computer-science-harvardx-cs50x"><b>C$50</b> Build it</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in to start your session</p>
+
+     <form action="/login" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+
+{% endblock %}
+
+{%block script %}
+<!-- iCheck -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' /* optional */
+    });
+  });
+</script>
+{% endblock %}
