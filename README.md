@@ -6,7 +6,7 @@ CS50 : Introduction to Computer Science, 2018. Final project.
 https://cs50.mydigitaldevops.com
 
 # Admin section 
-https://cs50.mydigitaldevops.com
+https://cs50.mydigitaldevops.com/admin
 
  * username : admin
  * login : 1234
